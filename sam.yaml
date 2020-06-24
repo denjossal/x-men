@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Mutant API - mutant::mutant
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+Resources:
+  MutantFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: mutant.StreamLambdaHandler::handleRequest
+      Runtime: java11
+      CodeUri: build/distributions/mutant-0.1.zip
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 15
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+
+Outputs:
+  MutantApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/mutant'
+    Export:
+      Name: MutantApi
