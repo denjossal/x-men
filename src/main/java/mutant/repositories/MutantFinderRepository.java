@@ -19,22 +19,23 @@ import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import io.reactivex.Maybe;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
+import mutant.models.response.MutantFinderStatsResponse;
+
+import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import javax.inject.Singleton;
-import mutant.models.response.MutantFinderStatsResponse;
 
 @Singleton
 public class MutantFinderRepository {
 
-  public static final int COUNT_GENERAL_DNA = 0;
+  private static final int COUNT_GENERAL_DNA = 0;
   private static final String TABLE_NAME = "stats";
   private static final String ID_COLUMN = "id";
   private static final String HUMAN_COLUMN = "humanCount";
   private static final String MUTANT_COLUMN = "mutantCount";
   private static final String MUTANT_STATS = "MUTANT_STATS";
-  public static final int INCREMENT = 1;
+  private static final int INCREMENT = 1;
 
   private final AmazonDynamoDBAsync client;
 

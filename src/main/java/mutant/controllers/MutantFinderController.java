@@ -45,8 +45,7 @@ public class MutantFinderController {
     logger.info("Processing a new DNA");
     boolean resp = mutantFinderService.isMutant(dna.getDna());
     mutantFinderRepository.saveStats(resp);
-    return mutantFinderService.isMutant(dna.getDna()) ? HttpResponse.ok()
-        : HttpResponse.badRequest();
+    return resp ? HttpResponse.ok() : HttpResponse.badRequest();
   }
 
   @Get(value = "/stats", produces = MediaType.APPLICATION_JSON)

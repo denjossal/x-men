@@ -17,8 +17,8 @@ import io.micronaut.core.annotation.Introspected;
 @Introspected
 public class MutantFinderStatsResponse {
 
-  public static final int PRECISION = 4;
-  public static final int EXP = 10;
+  private static final int PRECISION = 4;
+  private static final int EXP = 10;
   private int count_human_dna;
   private int count_mutant_dna;
   private double ratio;

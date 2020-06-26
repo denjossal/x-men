@@ -22,12 +22,15 @@ import io.micronaut.context.annotation.Primary;
 @Factory
 public class Config {
 
+  private static final java.lang.String AWS_ENDPOINT = "https://dynamodb.us-east-1.amazonaws.com";
+  private static final java.lang.String REGIONS_US_EAST_1 = "us-east-1";
+
   @Bean
   @Primary
   AmazonDynamoDBAsync dynamoDbAsyncClient() {
     return AmazonDynamoDBAsyncClientBuilder.standard()
         .withEndpointConfiguration(
-            new AwsClientBuilder.EndpointConfiguration("https://dynamodb.us-east-1.amazonaws.com", "us-east-1")
+            new AwsClientBuilder.EndpointConfiguration(AWS_ENDPOINT, REGIONS_US_EAST_1)
         ).build();
   }
 
